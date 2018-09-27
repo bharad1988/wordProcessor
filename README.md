@@ -27,30 +27,46 @@ Enter an option
 1. To Add a word
 2. To lookup a word
 3. To Exit
+1
+Enter a word to be added
+fantastic
+Enter the meaning to be added
+extraordinarily good or attractive
+1. To Add a word
+2. To lookup a word
+3. To Exit
+2
+Enter a word to be looked up
+fantas
+"fantas": Not Found..
+Try the following: 
+fantastic
+1. To Add a word
+2. To lookup a word
+3. To Exit
+2
+Enter a word to be looked up
+fantastic
+fantastic : extraordinarily good or attractive
+1. To Add a word
+2. To lookup a word
+3. To Exit
 2
 Enter a word to be looked up
 be
 "be": Not Found..
 Try the following: 
-best
+bezos
+bent
 being
 bear
-bezzt
 1. To Add a word
 2. To lookup a word
 3. To Exit
 2
 Enter a word to be looked up
-bear
-bear : Found
-1. To Add a word
-2. To lookup a word
-3. To Exit
-2
-Enter a word to be looked up
-testi
-"testi": Not Found..
-Did you mean : test
+bezos
+bezos : amazon guy
 1. To Add a word
 2. To lookup a word
 3. To Exit
