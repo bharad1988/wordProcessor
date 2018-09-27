@@ -25,7 +25,7 @@ public class ManageTrie {
     }
 
 
-    public void addWord(String s){
+    public void addWord(String s,String meaning){
         StringBuilder sb = new StringBuilder(s);
         TN next = root;
         while (sb.capacity() != 0){
@@ -35,6 +35,7 @@ public class ManageTrie {
             next = next.addChar(ch);
         }
         next.setTN();
+        next.setMeaning(meaning);
     }
     public boolean lookupWord(String s){
         StringBuilder sb = new StringBuilder(s);
@@ -56,7 +57,8 @@ public class ManageTrie {
         }
         //System.out.println(next.getRank());
         if (next.getTN()){
-            System.out.println(ds.toString() + " : Found");
+            //System.out.println(ds.toString() + " : Found");
+            System.out.println(ds.toString() + " : " + next.getMeaning());
             return true;
         }
         else if (next.getRank() > SET_WORD_LIMIT) {
@@ -171,7 +173,8 @@ public class ManageTrie {
         flusher = new Flusher(filepath);
         ArrayList<TN> nodelist = new ArrayList<>();
         nodelist.add(this.root);
-        System.out.println(this.root);
+        //System.out.println(this.root);
+        //System.out.println(root.tm.size());
         HashMap<Character,TN> map = root.getTM();
         if (map.isEmpty()){
             return;
@@ -180,13 +183,15 @@ public class ManageTrie {
             nodelist = writeTrie(nodelist, entry.getValue());
 
         }
+        //System.out.println(nodelist.size());
         flusher.writeObj(nodelist);
         this.closeTriefile();
     }
 
     private ArrayList<TN> writeTrie(ArrayList<TN> nodelist, TN node){
         HashMap<Character,TN> map = node.getTM();
-        System.out.println(node);
+        //System.out.println(node);
+        //System.out.println(node.tm.size());
         nodelist.add(node);
         if (map.isEmpty()){
             return nodelist;
@@ -215,8 +220,8 @@ public class ManageTrie {
         this.root = nodelist.get(0);
         nodelist.remove(0);
         System.out.println(nodelist.size());
-        System.out.println(nodelist.get(0));
-
+        return;
+        /*
         HashMap<Character,TN> map = this.root.getTM();
         if (map.isEmpty()){
             this.curateToppers();
@@ -226,13 +231,14 @@ public class ManageTrie {
             TN original = this.root;
             for (Map.Entry<Character, TN> entry : map.entrySet()) {
                 this.root = readTrie(original,nodelist);
+
             }
-            this.curateToppers();
+            //this.curateToppers();
             return;
-        }
+        }*/
     }
 
-
+    /*
     private TN readTrie(TN root,ArrayList<TN> nodelist){
         if (nodelist.size() <= 0){
             return root;
@@ -247,10 +253,15 @@ public class ManageTrie {
         }
         else {
             TN original = current;
+            int l = map.size();
             for (Map.Entry<Character, TN> entry : map.entrySet()) {
+                //this.root = readTrie(original,nodelist);
                 current = readTrie(original,nodelist);
             }
+
+            root.tm.put(current.getKey(),current);
             return root;
         }
     }
+    */
 }
