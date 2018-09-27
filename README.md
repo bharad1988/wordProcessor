@@ -1,5 +1,5 @@
 # Word Processor with a brain
-A dictionary with machine learning -
+A dictionary with machine learning ability to:
 - adds words to dictionary
 - lookup words.
 - if not found suggests best ranked words (like autocomplete or did you mean way) upto 4 words(configurable )
