@@ -1,7 +1,6 @@
 package search.suggest;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class Loader {
 
@@ -17,14 +16,15 @@ public class Loader {
         }
     }
 
-    public ArrayList<TN> readObj() {
-        ArrayList<TN> nodelist = null;
+    public TN readObj() {
         InputStream fileIs = null;
         ObjectInputStream objIs = null;
+        TN node = null;
         try{
             fileIs = new FileInputStream(this.filepath);
             objIs = new ObjectInputStream(fileIs);
-            nodelist = (ArrayList<TN>) objIs.readObject();
+
+            node = (TN) objIs.readObject();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -40,8 +40,7 @@ public class Loader {
             } catch (Exception ex) {
             }
         }
-        return nodelist;
+        return node;
     }
-
 
 }
