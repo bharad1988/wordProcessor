@@ -171,27 +171,11 @@ public class ManageTrie {
 
     public void writeTrie(){
         flusher = new Flusher(filepath);
-        ArrayList<TN> nodelist = new ArrayList<>();
-        nodelist.add(this.root);
-        //System.out.println(this.root);
-        //System.out.println(root.tm.size());
-        HashMap<Character,TN> map = root.getTM();
-        if (map.isEmpty()){
-            return;
-        }
-        for (Map.Entry<Character,TN> entry: map.entrySet()) {
-            nodelist = writeTrie(nodelist, entry.getValue());
-
-        }
-        //System.out.println(nodelist.size());
-        flusher.writeObj(nodelist);
-        this.closeTriefile();
+        flusher.writeObj(this.root);
     }
 
     private ArrayList<TN> writeTrie(ArrayList<TN> nodelist, TN node){
         HashMap<Character,TN> map = node.getTM();
-        //System.out.println(node);
-        //System.out.println(node.tm.size());
         nodelist.add(node);
         if (map.isEmpty()){
             return nodelist;
@@ -213,55 +197,11 @@ public class ManageTrie {
     }
 
     public void readTrie(){
-        ArrayList<TN> nodelist = loader.readObj();
-        if (nodelist.size() <= 0){
-            return;
-        }
-        this.root = nodelist.get(0);
-        nodelist.remove(0);
-        System.out.println(nodelist.size());
+        TN node = loader.readObj();
+        this.root = node;
         return;
-        /*
-        HashMap<Character,TN> map = this.root.getTM();
-        if (map.isEmpty()){
-            this.curateToppers();
-            return;
-        }
-        else {
-            TN original = this.root;
-            for (Map.Entry<Character, TN> entry : map.entrySet()) {
-                this.root = readTrie(original,nodelist);
 
-            }
-            //this.curateToppers();
-            return;
-        }*/
     }
 
-    /*
-    private TN readTrie(TN root,ArrayList<TN> nodelist){
-        if (nodelist.size() <= 0){
-            return root;
-        }
-        TN current = nodelist.get(0);
-        nodelist.remove(0);
-        root.tm.put(current.getKey(),current);
-        System.out.println(current);
-        HashMap<Character,TN> map = root.getTM();
-        if (map.isEmpty()){
-            return root;
-        }
-        else {
-            TN original = current;
-            int l = map.size();
-            for (Map.Entry<Character, TN> entry : map.entrySet()) {
-                //this.root = readTrie(original,nodelist);
-                current = readTrie(original,nodelist);
-            }
 
-            root.tm.put(current.getKey(),current);
-            return root;
-        }
-    }
-    */
 }
