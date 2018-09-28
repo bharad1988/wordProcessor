@@ -1,6 +1,5 @@
 package search.suggest;
 import java.io.*;
-import java.util.ArrayList;
 
 public class Flusher {
     private OutputStream ops = null;
@@ -17,9 +16,8 @@ public class Flusher {
         }
     }
 
-    public void writeObj(ArrayList<TN> obj) {
+    public void writeObj(TN obj) {
         try {
-
             objOps.writeObject(obj);
             objOps.flush();
 
@@ -30,15 +28,6 @@ public class Flusher {
                 if (objOps != null) objOps.close();
             } catch (Exception ex) {
             }
-        }
-    }
-
-    public void writeChar(char delimiter) {
-        try {
-            objOps.writeChar(delimiter);
-            objOps.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
